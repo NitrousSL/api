@@ -1,5 +1,5 @@
 # osint
-backend for yoshi studios related services   
+typescript and fastify rest api for basic osint tasks
 
 live version: [osint.roxipr.in](https://osint.roxipr.in)  
   
