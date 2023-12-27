@@ -1,0 +1,35 @@
+{
+  "name": "osint",
+  "version": "1.0.0",
+  "description": "osint api using fastify",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "test": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && node dist/test/index.js",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "run": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oxycodan/osint.git"
+  },
+  "keywords": [
+    "typescript",
+    "osint",
+    "api"
+  ],
+  "author": "David",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/compress": "^6.5.0",
+    "@fastify/helmet": "^11.1.1",
+    "@types/require-all": "^3.0.6",
+    "axios": "^1.6.2",
+    "fastify": "^4.24.3",
+    "require-all": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "dotenv": "^16.3.1",
+    "tsc-alias": "^1.8.8"
+  }
+}
