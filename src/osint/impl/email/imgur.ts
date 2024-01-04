@@ -7,7 +7,7 @@ export class Imgur extends Module {
     public static readonly meta = {
         name: "imgur",
         category: Category.Email,
-        description: "Checks if an email is registered on Imgur."
+        description: "Searches for information about a gmail address using imgur."
     };
 
     constructor() { super(Imgur.meta); }
@@ -27,9 +27,11 @@ export class Imgur extends Module {
             const text = '{"data":{"available":false},"success":true,"status":200}';
 
             if (text in checker) {
-                return { status: 200, data: true }; // Email is registered
+                 // Email is registered
+                return { status: 200, data: true };
             } else {
-                return { status: 400, data: false }; // Email is not registered
+                // Email is not registered
+                return { status: 400, data: false }; 
             }
         } catch (error) {
             console.error("Error querying Imgur API:", error);

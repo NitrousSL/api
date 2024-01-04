@@ -9,7 +9,7 @@ export class Hulu extends Module {
     public static readonly meta = {
         name: "hulu",
         category: Category.Email,
-        description: "Finds out if a given email address has a Hulu account."
+        description: "Searches for information about a gmail address using hulu."
     };
 
     constructor() { super(Hulu.meta); }
