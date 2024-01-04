@@ -1,6 +1,6 @@
 import { Category } from "@osint/category";
-import { Module }   from "@osint/module";
-import axios        from "axios";
+import { Module } from "@osint/module";
+import axios from "axios";
 
 export class Snapchat extends Module {
 
@@ -33,6 +33,9 @@ export class Snapchat extends Module {
             };
         } catch (error) {
             console.error("Error querying Snapchat API:", error);
+            if (error.response && error.response.status === 404) {
+                return { status: 404, data: null, message: "This email is not registered to snapchat." };
+            }
             return { status: 500, data: null };
         }
     }
