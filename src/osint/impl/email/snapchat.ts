@@ -9,7 +9,7 @@ export class Snapchat extends Module {
     public static readonly meta = {
         name: "snapchat",
         category: Category.Email,
-        description: "Searches for information about a gmail address using ghunt."
+        description: "Searches for information about a gmail address using snapchat."
     };
 
     constructor() { super(Snapchat.meta); }
@@ -30,7 +30,7 @@ export class Snapchat extends Module {
             
             const data = response.data;
 
-            const accountCheck = '{"account_type":"bitemoji"}';
+            const accountCheck = '{"account_type":"bitmoji"}';
 
 
             if (data && JSON.stringify(data).includes(accountCheck)) {
