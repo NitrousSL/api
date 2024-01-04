@@ -30,7 +30,7 @@ export class Snapchat extends Module {
             
             const data = response.data;
 
-            const accountCheck = '{"account_type":"bitemoji"}';
+            const accountCheck = '{"account_type":"bitmoji"}';
 
 
             if (data && JSON.stringify(data).includes(accountCheck)) {
