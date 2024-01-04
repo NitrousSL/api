@@ -25,7 +25,7 @@ export class Snapchat extends Module {
                 }
             );
             const data = response.data;
-            const accountCheck = '{"account_type":"bitmoji"}';
+            const accountCheck = '{"account_type": "bitmoji"}';
 
             return { 
                 status: 200, 
