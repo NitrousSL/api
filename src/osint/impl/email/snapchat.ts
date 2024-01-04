@@ -9,7 +9,7 @@ export class Snapchat extends Module {
     public static readonly meta = {
         name: "snapchat",
         category: Category.Email,
-        description: "Searches for information about a gmail address using ghunt."
+        description: "Searches for information about an email address using Snapchat."
     };
 
     constructor() { super(Snapchat.meta); }
