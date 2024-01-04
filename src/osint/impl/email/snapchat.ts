@@ -1,7 +1,5 @@
 import { Category } from "@osint/category";
 import { Module }   from "@osint/module";
-
-
 import axios        from "axios";
 
 export class Snapchat extends Module {
@@ -17,30 +15,24 @@ export class Snapchat extends Module {
     public async query(query: string): Promise<any> {
         try {
             const response = await axios.post('https://bitmoji.api.snapchat.com/api/user/find', 
-            
-            { 
-                email: query,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
+                { 
+                    email: query,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
                 }
-            }
             );
-            
             const data = response.data;
-
             const accountCheck = '{"account_type":"bitmoji"}';
 
-
-            if (data && JSON.stringify(data).includes(accountCheck)) {
-                return { status: 200, data: true };
-            } else {
-                return { status: 400, data: null };
-            } 
+            return { 
+                status: 200, 
+                data: data && JSON.stringify(data).includes(accountCheck)
+            };
         } catch (error) {
             console.error("Error querying Snapchat API:", error);
-
             return { status: 500, data: null };
         }
     }
