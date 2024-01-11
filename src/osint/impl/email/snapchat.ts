@@ -7,7 +7,11 @@ export class Snapchat extends Module {
     public static readonly meta = {
         name: "snapchat",
         category: Category.Email,
+<<<<<<< HEAD
         description: "Searches for information about a gmail address using snapchat."
+=======
+        description: "Searches for information about an email address using Snapchat."
+>>>>>>> 54fb165e1b2ae2309de4c79557e3f2cfd1c91266
     };
 
     constructor() { super(Snapchat.meta); }
@@ -25,6 +29,9 @@ export class Snapchat extends Module {
                 }
             );
             const data = response.data;
+            const accountCheck = '{"account_type": "bitmoji"}';
+
+<<<<<<< HEAD
             const accountCheck = '{"account_type":"bitmoji"}';
 
 
@@ -33,10 +40,12 @@ export class Snapchat extends Module {
             } else {
                 return { status: 400, data: null };
             } 
+=======
             return { 
                 status: 200, 
                 data: data && JSON.stringify(data).includes(accountCheck)
             };
+>>>>>>> 54fb165e1b2ae2309de4c79557e3f2cfd1c91266
         } catch (error) {
             console.error("Error querying Snapchat API:", error);
             if (error.response && error.response.status === 404) {
