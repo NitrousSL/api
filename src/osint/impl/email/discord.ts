@@ -7,7 +7,7 @@ export class Discord extends Module {
     public static readonly meta = {
         name: "discord",
         category: Category.Email,
-        description: "Checks if an email is registered on Discord."
+        description: "Searches for information about a gmail address using discord.
     };
 
     constructor() { super(Discord.meta); }
