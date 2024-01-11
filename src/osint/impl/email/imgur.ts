@@ -7,7 +7,7 @@ export class Imgur extends Module {
     public static readonly meta = {
         name: "imgur",
         category: Category.Email,
-        description: "Searches for information about a gmail address using imgur."
+        description: "Searches for information about an email address using imgur."
     };
 
     constructor() { super(Imgur.meta); }
