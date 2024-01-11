@@ -6,7 +6,12 @@ export class Duolingo extends Module {
     public static readonly meta = {
         name: "duolingo",
         category: Category.Email,
+<<<<<<< HEAD
         description: "Searches for information about a gmail address using duolingo.",
+=======
+        description: "Searches for information about an email address using duolingo."
+    };
+>>>>>>> 54fb165e1b2ae2309de4c79557e3f2cfd1c91266
 
     constructor() { super(Duolingo.meta); }
 
