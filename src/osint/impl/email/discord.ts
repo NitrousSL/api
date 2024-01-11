@@ -14,10 +14,7 @@ export class Discord extends Module {
 
     public async query(email: string): Promise<any> {
         try {
-            const cookieString = '__cfruid=75dd35fcb721545ff0a6798a2833c04ec257fd5a-1679183851; ' +
-                                 '__dcfduid=a585f1c2c5e811edb2f6a25738b7802e; ' +
-                                 '__sdcfduid=a585f1c2c5e811edb2f6a25738b7802e9ba98e53c2319d50476386ec96c3a06087eb06f1ccf8dec3627a51ff901681ca';
-
+            
             const headers = {
                 'User-Agent:': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
                 'Accept': '*/*',
