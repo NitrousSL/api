@@ -30,7 +30,7 @@ export class Imgur extends Module {
                 }
             });
 
-        const exists = response.data.includes('{"data":{"available":false},"success":true,"status":200}');
+        const exists = response.data.available === false;
 
         return {
             status : exists ? 200  : 404,
