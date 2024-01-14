@@ -33,10 +33,9 @@ All modules within a category can be queried via the following endpoints:
 ## Response Schema
 
 ```json
-{
-  "status" : 200  || 404,
-  "data"   : data || null,
-}
+{ "status" : 200, "data" : data }
+{ "status" : 404, "data" : null }
+{ "status" : 500, "data" : null }
 ```
 
 # Development
