@@ -3,6 +3,14 @@ fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaiss
 
 # Usage
 
+## Categories  
+
+- [`/username`](https://api.nitrous-oxi.de/username)
+- [`/domain`](https://api.nitrous-oxi.de/domain)
+- [`/email`](https://api.nitrous-oxi.de/email)
+- [`/phone`](https://api.nitrous-oxi.de/phone)
+- [`/ip`](https://api.nitrous-oxi.de/ip)
+
 ## Module Indexing
 
 All modules can be indexed via the following endpoints:
@@ -21,12 +29,6 @@ A single module can be queried via the following endpoint:
 All modules within a category can be queried via the following endpoints:
 
 `https://api.nitrous-oxi.de/<category>?query=`
-
-- [`/username`](https://api.nitrous-oxi.de/username)
-- [`/domain`](https://api.nitrous-oxi.de/domain)
-- [`/email`](https://api.nitrous-oxi.de/email)
-- [`/phone`](https://api.nitrous-oxi.de/phone)
-- [`/ip`](https://api.nitrous-oxi.de/ip)
 
 # Getting Started Locally
 ```bash
