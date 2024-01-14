@@ -42,10 +42,10 @@ All modules within a category can be queried via the following endpoints:
 
 # Getting Started Locally
 ```bash
-git clone https://github.com/NitrousOSINT/api.git
-npm install
-npm run build
-npm run start
+$ git clone https://github.com/NitrousOSINT/api.git
+$ npm install
+$ npm run build
+$ npm run start
 ```
 
 ## ModuleCategory Enum
@@ -143,6 +143,7 @@ export class CashApp extends Module {
 
         const response = await axios.get(`https://cash.app/$${query}`);
 
+        // determine if the query has returned a valid response
         const exists = response.data.includes('var profile =');
 
         // parse the response, and return data which is then sent to the client
@@ -153,6 +154,6 @@ export class CashApp extends Module {
     }
 }
 
-// export a new instance of our module class
+// export a new instance of our module's class
 module.exports = new CashApp;
 ```
