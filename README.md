@@ -51,7 +51,7 @@ export enum Category {
 }
 ```
 
-Each module is registered to a category and can be accessed via the category enum, router defers indexing by category as well.
+Each module must be assigned a category, which is used for indexing.
 
 ## Module Interface
 
@@ -93,9 +93,9 @@ export class CashApp extends Module {
 
     // define the metadata for our module
     public static readonly meta = {
-        name: "cashapp",
-        category: Category.Username,
-        description: "Searches for a given username on CashApp."
+        name        : "cashapp",
+        category    : Category.Username,
+        description : "Searches for a given username on CashApp."
     };
 
     // call the superclass constructor with our metadata
