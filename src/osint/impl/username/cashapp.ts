@@ -6,9 +6,9 @@ import axios        from "axios";
 export class CashApp extends Module {
 
     public static readonly meta = {
-        name: "cashapp",
-        category: Category.Username,
-        description: "Searches for a given username on CashApp."
+        name        : "cashapp",
+        category    : Category.Username,
+        description : "Searches for a given username on CashApp."
     };
 
     constructor() { super(CashApp.meta); }
