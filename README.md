@@ -1,16 +1,40 @@
 # nitrous-oxi.de OSINT API
-fastify/typescript osint search api for basic reconnaissance
+fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaissance
 
-live version: [api.nitrous-oxi.de](https://api.nitrous-oxi.de/)
-  
-# Getting Started
+# Usage
+
+## Module Indexing
+
+All modules can be indexed via the following endpoints (no query):
+
+`https://api.nitrous-oxi.de/`  
+`https://api.nitrous-oxi.de/<queryType>`
+
+## Individual Modules
+
+A single module can be queried via the following endpoint:
+
+`https://api.nitrous-oxi.de/<queryType>/<module>?query=`
+
+## Query Types:
+
+All modules within a category can be queried via the following endpoints:
+
+`https://api.nitrous-oxi.de/<queryType>?query=`
+
+- [`/username`](https://api.nitrous-oxi.de/username)
+- [`/domain`](https://api.nitrous-oxi.de/domain)
+- [`/email`](https://api.nitrous-oxi.de/email)
+- [`/phone`](https://api.nitrous-oxi.de/phone)
+- [`/ip`](https://api.nitrous-oxi.de/ip)
+
+# Getting Started Locally
 ```bash
 git clone https://github.com/NitrousOSINT/api.git
 npm install
 npm run build
 npm run start
 ```
-
 # Development
 
 ## Category Enum
@@ -98,33 +122,3 @@ export class CashApp extends Module {
 // export a new instance of our module
 module.exports = new CashApp;
 ```
-
-# Usage
-
-## Individual Modules
-
-A single module can be queried via the following endpoint:
-
-`https://api.nitrous-oxi.de/<queryType>/<module>?query=`
-
-## Query Types:  
-  
-All modules within a category can be queried via the following endpoint:
-
-`https://api.nitrous-oxi.de/<queryType>?query=`  
-  
-- [`/username`](https://api.nitrous-oxi.de/username)  
-- [`/domain`](https://api.nitrous-oxi.de/domain)  
-- [`/email`](https://api.nitrous-oxi.de/email)  
-- [`/phone`](https://api.nitrous-oxi.de/phone)  
-- [`/ip`](https://api.nitrous-oxi.de/ip)  
-  
-## Query Indexing
-
-All modules can be indexed via the following endpoints (no query):
-
-`https://api.nitrous-oxi.de/`  
-`https://api.nitrous-oxi.de/<queryType>`
-
-
- 
