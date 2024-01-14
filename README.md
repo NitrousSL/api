@@ -5,22 +5,22 @@ fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaiss
 
 ## Module Indexing
 
-All modules can be indexed via the following endpoints (no query):
+All modules can be indexed via the following endpoints:
 
 `https://api.nitrous-oxi.de/`  
-`https://api.nitrous-oxi.de/<queryType>`
+`https://api.nitrous-oxi.de/<category>/`
 
-## Individual Modules
+## Individual Module Queries
 
 A single module can be queried via the following endpoint:
 
-`https://api.nitrous-oxi.de/<queryType>/<module>?query=`
+`https://api.nitrous-oxi.de/<category>/<module>?query=`
 
-## Query Types:
+## Categorized Queries
 
 All modules within a category can be queried via the following endpoints:
 
-`https://api.nitrous-oxi.de/<queryType>?query=`
+`https://api.nitrous-oxi.de/<category>?query=`
 
 - [`/username`](https://api.nitrous-oxi.de/username)
 - [`/domain`](https://api.nitrous-oxi.de/domain)
