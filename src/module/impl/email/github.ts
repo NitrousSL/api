@@ -11,7 +11,7 @@ const META: ModuleMeta = {
     name        : "github",
     description : "Searches for GitHub profile info based on a given email.",
 
-    category    : ModuleCategory.Username,
+    category    : ModuleCategory.Email,
     type        : ModuleType.Information,
 }
 

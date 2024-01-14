@@ -11,7 +11,7 @@ const META: ModuleMeta = {
     name        : "imgur",
     description : "Searches for Imgur profile existence based on a given email.",
 
-    category    : ModuleCategory.Username,
+    category    : ModuleCategory.Email,
     type        : ModuleType.Existence,
 }
 
