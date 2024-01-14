@@ -1,19 +1,19 @@
 # osint
 typescript and fastify rest api for basic osint tasks
 
-live version: [osint.roxipr.in](https://osint.roxipr.in)  
+live version: [api.nitrous-oxi.de](https://api.nitrous-oxi.de/)
   
 # Query Types:  
   
-`https://osint.roxipr.in/<queryType>?query=`  
+`https://api.nitrous-oxi.de/<queryType>?query=`  
   
-- [`/username`](https://osint.roxipr.in/username)  
-- [`/domain`](https://osint.roxipr.in/domain)  
-- [`/email`](https://osint.roxipr.in/email)  
-- [`/phone`](https://osint.roxipr.in/phone)  
-- [`/ip`](https://osint.roxipr.in/ip)  
+- [`/username`](https://api.nitrous-oxi.de/username)  
+- [`/domain`](https://api.nitrous-oxi.de/domain)  
+- [`/email`](https://api.nitrous-oxi.de/email)  
+- [`/phone`](https://api.nitrous-oxi.de/phone)  
+- [`/ip`](https://api.nitrous-oxi.de/ip)  
   
 # Individual Modules  
   
-`https://osint.roxipr.in/<queryType>/<module>?query=`
+`https://api.nitrous-oxi.de/<queryType>/<module>?query=`
  
