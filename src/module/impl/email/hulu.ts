@@ -22,7 +22,8 @@ export class Hulu extends Module {
     public async query(query: string): Promise<any> {
 
         const response = await axios.get(`https://signup.hulu.com/api/v3/accounts/status?email=${query}`);
-        const exists = response.data.includes('{"status":"existing"}');
+
+        const exists = response.data.status === 'existing';
 
         return {
             status : exists ? 200  : 404,
