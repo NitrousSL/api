@@ -1,35 +1,35 @@
 {
-  "name": "osint",
-  "version": "1.0.0",
-  "description": "osint api using fastify",
+  "name": "api",
+  "version": "0.0.1",
+  "description": "nitrous-oxi.de osint api using fastify & typescript",
   "main": "dist/src/index.js",
   "scripts": {
-    "test": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && node dist/test/index.js",
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "run": "node dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oxycodan/osint.git"
+    "url": "git+https://github.com/NitrousOSINT/api.git"
   },
   "keywords": [
     "typescript",
+    "fastify",
     "osint",
     "api"
   ],
-  "author": "David",
+  "author": "David & Marc",
   "license": "ISC",
   "dependencies": {
-    "@fastify/compress": "^6.5.0",
-    "@fastify/helmet": "^11.1.1",
-    "@types/require-all": "^3.0.6",
-    "axios": "^1.6.2",
-    "fastify": "^4.24.3",
-    "require-all": "^3.0.0"
+    "@types/require-all" : "^3.0.6",
+    "require-all"        : "^3.0.0",
+    "@fastify/compress"  : "^6.5.0",
+    "@fastify/helmet"    : "^11.1.1",
+    "fastify"            : "^4.24.3",
+    "axios"              : "^1.6.2"
   },
   "devDependencies": {
-    "@types/node": "^20.8.0",
-    "dotenv": "^16.3.1",
-    "tsc-alias": "^1.8.8"
+    "@types/node" : "^20.8.0",
+    "tsc-alias"   : "^1.8.8",
+    "dotenv"      : "^16.3.1"
   }
 }

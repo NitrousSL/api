@@ -1,5 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
-import { Category}                                       from "@osint/category";
+
+import { Category }                                      from "@osint/category";
 import { getModules }                                    from "@osint/module";
 
 import RequireAll                                        from "require-all";
