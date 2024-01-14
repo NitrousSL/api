@@ -3,24 +3,7 @@ fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaiss
 
 # Usage
 
-## Module Indexing
-
-All modules can be indexed via the following endpoints (no query):
-
-`https://api.nitrous-oxi.de/`  
-`https://api.nitrous-oxi.de/<queryType>`
-
-## Individual Modules
-
-A single module can be queried via the following endpoint:
-
-`https://api.nitrous-oxi.de/<queryType>/<module>?query=`
-
-## Query Types:
-
-All modules within a category can be queried via the following endpoints:
-
-`https://api.nitrous-oxi.de/<queryType>?query=`
+## Categories  
 
 - [`/username`](https://api.nitrous-oxi.de/username)
 - [`/domain`](https://api.nitrous-oxi.de/domain)
@@ -28,16 +11,24 @@ All modules within a category can be queried via the following endpoints:
 - [`/phone`](https://api.nitrous-oxi.de/phone)
 - [`/ip`](https://api.nitrous-oxi.de/ip)
 
-## Response Schema
+## Module Indexing
 
-```json
-{
-  "status" : 200  || 404,
-  "data"   : data || null,
-}
-```
+All modules can be indexed via the following endpoints:
 
-# Development
+`https://api.nitrous-oxi.de/`  
+`https://api.nitrous-oxi.de/<category>/`
+
+## Individual Module Queries
+
+A single module can be queried via the following endpoint:
+
+`https://api.nitrous-oxi.de/<category>/<module>?query=`
+
+## Categorized Queries
+
+All modules within a category can be queried via the following endpoints:
+
+`https://api.nitrous-oxi.de/<category>?query=`
 
 # Getting Started Locally
 ```bash
@@ -46,13 +37,14 @@ npm install
 npm run build
 npm run start
 ```
+# Development
 
-## ModuleCategory Enum
+## Category Enum
 
-found in `src/sdk/enum/eModuleCategory.ts`  
+found in `src/osint/category.ts`  
 
 ```typescript
-export enum ModuleCategory {
+export enum Category {
     Username = 'username',
     Phone    = 'phone',
     Email    = 'email',
@@ -61,47 +53,26 @@ export enum ModuleCategory {
 }
 ```
 
-Each module must be assigned a category, which describes its required input.
+Each module must be assigned a category, which is used for indexing.
 
-## ModuleType Enum
+## Module Interface
 
-found in `src/sdk/enum/eModuleType.ts`  
-
-```typescript
-export enum ModuleType {
-    Information = 'information',
-    Existence   = 'existence',
-}
-```
-
-Each module must be assigned a type, which is used to describe the date returned.
-
-## ModuleMeta Interface
-
-found in `src/sdk/interface/iModuleMeta.ts`  
-
-```typescript
-export interface ModuleMeta {
-    name        : string;
-    description : string;
-
-    category    : ModuleCategory;
-    type        : ModuleType;
-}
-```
-
-Each module must be assigned metadata, which is used for indexing.
-
-## Module Superclass
-
-found in `src/module/module.ts`  
+found in `src/osint/module.ts`  
 
 ```typescript
 export class Module {
 
-    public meta: ModuleMeta;
+    public name          : string;
+    public description   : string;
 
-    constructor(meta: ModuleMeta) { this.meta = meta; }
+    public category      : Category;
+
+    constructor(meta: any) {
+
+        this.name        = meta.name;
+        this.description = meta.description;
+        this.category    = meta.category;
+    }
 
     public async query(query: string): Promise<any> { throw new Error("Method not implemented."); }
 }
@@ -111,47 +82,45 @@ Every module has a set metadata, and must implement the `query` method, which re
 
 ## In Practice
 
-found in `src/module/impl/username/cashapp.ts`  
+found in `src/osint/impl/username/cashapp.ts`  
 
 ```typescript
-import { ModuleCategory } from "@enum/eModuleCategory";
-import { ModuleType }     from "@enum/eModuleType";
+import { Category } from "@osint/category";
+import { Module }   from "@osint/module";
 
-import { ModuleMeta }     from "@interface/iModuleMeta";
-
-import { Module }         from "@module/module";
-
-import axios              from "axios";
-
-// define our module's metadata
-const META: ModuleMeta = {
-    name        : "cashapp",
-    description : "Searches for CashApp profile info based on a given username.",
-
-    category    : ModuleCategory.Username,
-    type        : ModuleType.Information,
-}
+import axios        from "axios";
 
 // create a new class extending our Module superclass
 export class CashApp extends Module {
 
-    // construct our class using our metadata
-    constructor() { super(META); }
+    // define the metadata for our module
+    public static readonly meta = {
+        name        : "cashapp",
+        category    : Category.Username,
+        description : "Searches for a given username on CashApp."
+    };
 
+    // call the superclass constructor with our metadata
+    constructor() { super(CashApp.meta); }
+
+    // implement the query method
     public async query(query: string): Promise<any> {
 
         const response = await axios.get(`https://cash.app/$${query}`);
 
-        const exists = response.data.includes('var profile =');
+        if (response.data === '') { return { status: 404, data: null }; }
 
-        // parse the response, and return data which is then sent to the client
-        return {
-            status : exists ? 200                                                                : 404,
-            data   : exists ? JSON.parse(response.data.split('var profile = ')[1].split(';')[0]) : null,
+        if (response.data.includes('var profile =')) {
+
+            // parse the response, and return data which is then sent to the client
+            return {
+                status: 200,
+                data: JSON.parse(response.data.split('var profile = ')[1].split(';')[0])
+            }
         }
     }
 }
 
-// export a new instance of our module class
+// export a new instance of our module
 module.exports = new CashApp;
 ```
