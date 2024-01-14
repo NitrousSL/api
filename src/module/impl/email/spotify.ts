@@ -25,8 +25,8 @@ export class Spotify extends Module {
         const exists = response.data.status === 20;
 
         return {
-            status : exists ? 200        : 404,
-            data   : exists ? { exists } : null,
+            status : exists ? 200  : 404,
+            data   : exists ? true : null,
         }
     }
 }
