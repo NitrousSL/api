@@ -11,8 +11,10 @@
         "strict": true,
         "esModuleInterop": true,
         "paths": {
-            "@osint/*": ["./src/osint/*"],
-            "@route/*": ["./src/route/*"],
+            "@interface/*" : ["./src/sdk/interface/*"],
+            "@enum/*"      : ["./src/sdk/enum/*"],
+            "@module/*"    : ["./src/module/*"],
+            "@route/*"     : ["./src/route/*"],
         },
         "declaration": true
     },

@@ -38,3 +38,5 @@ async function main(fastify: FastifyInstance) {
 }
 
 main(app).then(r => { console.log(`[${new Date().toLocaleString()}] | Server started and listening at [${HOST}:${PORT}]`); });
+
+// Path: src/index.ts

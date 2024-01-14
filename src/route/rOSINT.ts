@@ -1,32 +1,33 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
-import { Category }                                      from "@osint/category";
-import { getModules }                                    from "@osint/module";
+import { ModuleCategory }                                from "@enum/eModuleCategory";
+
+import { getModules, Module }                            from "@module/module";
 
 import RequireAll                                        from "require-all";
 import path                                              from "path";
 
-type Request = FastifyRequest<{
-    Querystring: { query: string }
-}>;
+type Request = FastifyRequest<{ Querystring: { query: string } }>;
 
 async function rOSINT(fastify: FastifyInstance) {
 
-    const modules = getModules();
+    const modules: Module[] = getModules();
 
     // map out endpoints by module [category], {display name, desc, and route}
     const endpoints = modules.map(m => {
         return {
-            name        : m.name,
-            description : m.description,
-            route       : `/${m.category.valueOf().toLowerCase()}/${m.name}`
+            description : m.meta.description,
+            name        : m.meta.name,
+
+            route       : `/${m.meta.category.valueOf().toLowerCase()}/${m.meta.name}`,
+            type        : m.meta.type.valueOf(),
         }
     });
 
     // return an array of each category, inside each category is an array of endpoints, each endpoint has a name, desc, and route
     fastify.get("/", async (req: FastifyRequest, res: FastifyReply) => {
 
-        const data = Object.values(Category).map(c => {
+        const data = Object.values(ModuleCategory).map(c => {
             return {
                 category  : c,
                 endpoints : endpoints.filter(e => e.route.includes(c.valueOf().toLowerCase()))
@@ -36,11 +37,11 @@ async function rOSINT(fastify: FastifyInstance) {
         res.send(data);
     });
 
-    for (const cat in Category) {
+    for (const cat in ModuleCategory) {
 
         const modules = Object.entries(
             RequireAll({
-              dirname : path.join(__dirname, `../osint/impl/${cat.valueOf().toLowerCase()}`),
+              dirname : path.join(__dirname, `../module/impl/${cat.valueOf().toLowerCase()}`),
               filter  : /^(?!-)(.+)\.js$/,
           })
         );
@@ -85,3 +86,5 @@ async function rOSINT(fastify: FastifyInstance) {
 }
 
 export default rOSINT;
+
+// Path: src/route/rOSINT.ts
