@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches the Snusbase API v2 for passwords associated with a given email address",
 
     category    : ModuleCategory.Email,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class SnusbasePasswords extends Module {

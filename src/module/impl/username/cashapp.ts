@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches for CashApp profile info based on a given username.",
 
     category    : ModuleCategory.Username,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class CashApp extends Module {

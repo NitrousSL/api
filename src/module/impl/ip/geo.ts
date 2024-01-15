@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches a location for a given IP address.",
 
     category    : ModuleCategory.IP,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class Geo extends Module {

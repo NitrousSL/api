@@ -14,7 +14,7 @@ const META: ModuleMeta = {
     description : "Searches Google profile info using Ghunt based on a given gmail address.",
 
     category    : ModuleCategory.Email,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 const ghunt = path.join(__dirname, "..", "..", "..", "..", "bin", "ghuntQuery.py");

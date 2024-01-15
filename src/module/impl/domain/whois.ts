@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches whois info for a given domain name.",
 
     category    : ModuleCategory.Domain,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class WhoIs extends Module {

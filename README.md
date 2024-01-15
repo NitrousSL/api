@@ -70,8 +70,8 @@ found in `src/sdk/enum/eModuleType.ts` aliased as `@enum/eModuleType`
 
 ```typescript
 export enum ModuleType {
-    Information = 'information',
-    Existence   = 'existence',
+    Enrichment = 'enrichment',
+    Existence  = 'existence',
 }
 ```
 
@@ -130,7 +130,7 @@ const META: ModuleMeta = {
     description : "Searches for CashApp profile info based on a given username.",
 
     category    : ModuleCategory.Username,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 // create a new class extending our Module superclass

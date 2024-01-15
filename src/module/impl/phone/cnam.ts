@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches for a name and location (CNAM) using a given phone number.",
 
     category    : ModuleCategory.Phone,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class CNAM extends Module {

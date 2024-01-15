@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches for GitHub profile info based on a given email.",
 
     category    : ModuleCategory.Email,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class Github extends Module {

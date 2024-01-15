@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches for Duolingo profile info based on a given username.",
 
     category    : ModuleCategory.Username,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class Duolingo extends Module {

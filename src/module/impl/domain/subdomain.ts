@@ -12,7 +12,7 @@ const META: ModuleMeta = {
     description : "Searches for subdomains within a given domain name.",
 
     category    : ModuleCategory.Domain,
-    type        : ModuleType.Information,
+    type        : ModuleType.Enrichment,
 }
 
 export class Subdomain extends Module {
