@@ -10,7 +10,7 @@ import path               from "path";
 
 
 const META: ModuleMeta = {
-    name        : "ghunt",
+    name        : "google",
     description : "Searches Google profile info using Ghunt based on a given gmail address.",
 
     category    : ModuleCategory.Email,
@@ -19,7 +19,7 @@ const META: ModuleMeta = {
 
 const ghunt = path.join(__dirname, "..", "..", "..", "..", "bin", "ghuntQuery.py");
 
-export class Ghunt extends Module {
+export class Google extends Module {
 
     constructor() { super(META); }
 
@@ -41,6 +41,6 @@ export class Ghunt extends Module {
     }
 }
 
-module.exports = new Ghunt;
+module.exports = new Google;
 
-// Path: src/module/impl/email/ghunt.ts
+// Path: src/module/impl/email/google.ts
