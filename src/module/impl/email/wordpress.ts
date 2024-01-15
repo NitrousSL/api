@@ -25,8 +25,8 @@ export class WordPress extends Module {
         const exists = response.data.code === 404 && response.data.body;
 
         return {
-            status : exists ? 200        : 404,
-            data   : exists ? { exists } : null,
+            status : exists ? 200  : 404,
+            data   : exists ? true : null,
         }
     }
 }
