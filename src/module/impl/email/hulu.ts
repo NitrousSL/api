@@ -21,15 +21,19 @@ export class Hulu extends Module {
 
     public async query(query: string): Promise<any> {
 
+        /* This works locally, but not on the server? TODO: fix this
         const response = await axios.get(`https://signup.hulu.com/api/v3/accounts/status?email=${query}`);
-
-        console.log(response)
 
         const exists = response.data.status === 'existing';
 
         return {
             status : exists ? 200  : 404,
             data   : exists ? true : null,
+        } */
+
+        return {
+            status : 404,
+            data   : 'Module is temporarily disabled.',
         }
     }
 }
