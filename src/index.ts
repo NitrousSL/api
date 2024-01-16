@@ -3,7 +3,6 @@ import 'dotenv/config';
 import fastify, { FastifyInstance } from 'fastify';
 import compress                     from "@fastify/compress";
 import helmet                       from "@fastify/helmet";
-import cors                         from "@fastify/cors";
 
 /////////////////////////////////////////////////////////////
 //
@@ -26,11 +25,6 @@ import rOSINT     from '@route/rOSINT';
 /////////////////////////////////////////////////////////////
 
 async function main(fastify: FastifyInstance) {
-
-    await fastify.register(cors, {
-        origin: '*',
-        methods: ['GET'],
-    });
 
     fastify.register(compress);
     fastify.register(helmet);
