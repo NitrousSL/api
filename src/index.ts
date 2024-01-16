@@ -3,6 +3,7 @@ import 'dotenv/config';
 import fastify, { FastifyInstance } from 'fastify';
 import compress                     from "@fastify/compress";
 import helmet                       from "@fastify/helmet";
+import cors                         from "@fastify/cors";
 
 /////////////////////////////////////////////////////////////
 //
@@ -28,6 +29,7 @@ async function main(fastify: FastifyInstance) {
 
     fastify.register(compress);
     fastify.register(helmet);
+    fastify.register(cors);
 
     rOSINT(fastify);
 
