@@ -28,7 +28,7 @@ import rOSINT     from '@route/rOSINT';
 async function main(fastify: FastifyInstance) {
 
     await fastify.register(cors, {
-        origin: 'https://nitrous-oxi.de',
+        origin: '*',
         methods: ['GET'],
         allowedHeaders: ['Content-Type']
     });
