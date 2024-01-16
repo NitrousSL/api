@@ -30,7 +30,6 @@ async function main(fastify: FastifyInstance) {
     await fastify.register(cors, {
         origin: '*',
         methods: ['GET'],
-        allowedHeaders: ['Content-Type']
     });
 
     fastify.register(compress);
