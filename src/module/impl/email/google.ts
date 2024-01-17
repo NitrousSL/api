@@ -33,7 +33,8 @@ export class Google extends Module {
         });
 
         const parsed = JSON.parse(<string>result);
-        const exists = parsed.length > 0;
+
+        const exists = parsed.toString() !== 'false';
 
         return {
             status : exists ? 200                        : 404,
