@@ -32,7 +32,8 @@ export class Google extends Module {
             });
         });
 
-        const exists = JSON.parse(<string>result) !== 'false';
+        const parsed = JSON.parse(<string>result);
+        const exists = parsed.length > 0;
 
         return {
             status : exists ? 200                        : 404,
