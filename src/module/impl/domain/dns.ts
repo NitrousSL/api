@@ -8,26 +8,26 @@ import { Module }         from "@module/module";
 import axios              from "axios";
 
 const META: ModuleMeta = {
-    name        : "cnam",
-    description : "Searches for a name and location (CNAM) using a given phone number.",
+    name        : "dns",
+    description : "Searches for DNS records within a given domain name using API Ninjas.",
 
-    category    : ModuleCategory.Phone,
+    category    : ModuleCategory.Domain,
     type        : ModuleType.Enrichment,
 }
 
-export class CNAM extends Module {
+export class DNS extends Module {
 
     constructor() { super(META); }
 
     public async query(query: string): Promise<any> {
 
-        const response = await axios.get(`https://callername.com/api/amp/callerid/${query}.json?__amp_source_origin=https://callername.com`, {
+        const response = await axios.get(`https://api.api-ninjas.com/v1/dnslookup?domain=${query}`, {
             headers: {
-                'amp-same-origin': 'true',
+                'X-Api-Key': process.env.API_NINJAS_KEY as string
             }
         });
 
-        const exists = response.data.name !== '';
+        const exists = response.data !== '';
 
         return {
             status : exists ? 200           : 404,
@@ -36,6 +36,6 @@ export class CNAM extends Module {
     }
 }
 
-module.exports = new CNAM;
+module.exports = new DNS;
 
-// Path: src/module/impl/phone/cnam.ts
+// Path: src/module/impl/domain/dns.ts

@@ -8,7 +8,7 @@ export default class QPhone implements IQueryStandardization {
     readonly minLength   : number = 5;
     readonly maxLength   : number = 255;
 
-    // ie86 format +1 123 456 7890 (no spaces, plus sign, or dashes)
+    // e164 format +1 123 456 7890 (no spaces, plus sign, or dashes)
     readonly regex     ? : RegExp = /^\+?[0-9]{1,3}[0-9]{3}[0-9]{3}[0-9]{4}$/;
 }
 

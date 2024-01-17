@@ -8,26 +8,26 @@ import { Module }         from "@module/module";
 import axios              from "axios";
 
 const META: ModuleMeta = {
-    name        : "cnam",
-    description : "Searches for a name and location (CNAM) using a given phone number.",
+    name        : "validation",
+    description : "Validates phone number and returns location info using API Ninjas.",
 
     category    : ModuleCategory.Phone,
     type        : ModuleType.Enrichment,
 }
 
-export class CNAM extends Module {
+export class Validation extends Module {
 
     constructor() { super(META); }
 
     public async query(query: string): Promise<any> {
 
-        const response = await axios.get(`https://callername.com/api/amp/callerid/${query}.json?__amp_source_origin=https://callername.com`, {
+        const response = await axios.get(`https://api.api-ninjas.com/v1/validatephone?number=${query}`, {
             headers: {
-                'amp-same-origin': 'true',
+                'X-Api-Key': process.env.API_NINJAS_KEY as string
             }
         });
 
-        const exists = response.data.name !== '';
+        const exists = response.data !== '';
 
         return {
             status : exists ? 200           : 404,
@@ -36,6 +36,6 @@ export class CNAM extends Module {
     }
 }
 
-module.exports = new CNAM;
+module.exports = new Validation;
 
-// Path: src/module/impl/phone/cnam.ts
+// Path: src/module/impl/domain/validation.ts
