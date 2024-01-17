@@ -23,7 +23,7 @@ export class Github extends Module {
 
         const response = await axios.get(`https://api.github.com/search/users?q=${query}`);
 
-        const exists = response.data.login.toLowerCase() === query.toLowerCase();
+        const exists = response.data.total_count > 0;
 
         return {
             status : exists ? 200           : 404,
