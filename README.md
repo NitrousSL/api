@@ -115,15 +115,6 @@ Every module has a set metadata, and must implement the `query` method, which re
 found in `src/module/impl/username/cashapp.ts`
 
 ```typescript
-import { ModuleCategory } from "@enum/eModuleCategory";
-import { ModuleType }     from "@enum/eModuleType";
-
-import { ModuleMeta }     from "@interface/iModuleMeta";
-
-import { Module }         from "@module/module";
-
-import axios              from "axios";
-
 // define our module's metadata
 const META: ModuleMeta = {
     name        : "cashapp",
@@ -157,3 +148,49 @@ export class CashApp extends Module {
 // export a new instance of our module's class
 module.exports = new CashApp;
 ```
+
+## QueryStandardization Interface
+
+found in `src/sdk/interface/iQueryStandardization.ts` aliased as `@interface/iQueryStandardization`
+
+```typescript
+export default interface IQueryStandardization {
+
+    readonly category    : ModuleCategory;
+
+    readonly minLength   : number;
+    readonly maxLength   : number;
+
+    readonly regex     ? : RegExp;
+}
+```
+
+Provides category-specific query standardization to catch some common mistakes.
+
+### Example
+
+found in `src/module/query/qDomain.ts`
+
+```typescript
+// create a new class implementing our interface
+export default class QDomain implements IQueryStandardization {
+
+    // define our category
+    readonly category    : ModuleCategory = ModuleCategory.Domain;
+
+    // define our query standardization
+    readonly minLength   : number = 3;
+    readonly maxLength   : number = 255;
+
+    // optionally define a regex to match against
+    readonly regex     ? : RegExp = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/;
+}
+
+// export a new instance of our class
+module.exports = new QDomain;
+```
+
+The router will automatically standardize the query before passing it to the module, and will return a 400 if the query does not meet the standardization requirements.
+  
+See the `doesQueryConform()` method and its usages in `src/route/rOSINT.ts` for more information.
+
