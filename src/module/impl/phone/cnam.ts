@@ -21,6 +21,7 @@ export class CNAM extends Module {
 
     public async query(query: string): Promise<any> {
 
+        /*
         const response = await axios.get(`https://callername.com/api/amp/callerid/${query}.json?__amp_source_origin=https://callername.com`, {
             headers: {
                 'amp-same-origin': 'true',
@@ -32,7 +33,9 @@ export class CNAM extends Module {
         return {
             status : exists ? 200           : 404,
             data   : exists ? response.data : null,
-        }
+        }*/
+
+        return { status: 404, data: "This module is currently unavailable."}
     }
 }
 
