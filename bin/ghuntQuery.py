@@ -14,7 +14,7 @@ cred_file = 'creds.txt'
 
 async def main():
     if len(sys.argv) < 3:
-        print("Usage: python ghunt.py <creds> <email>")
+        print("Usage: python ghuntQuery.py <creds> <email>")
         sys.exit(1)
 
     if not exists(cred_file):
