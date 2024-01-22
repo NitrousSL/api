@@ -49,7 +49,7 @@ async function main(fastify: FastifyInstance) {
     // invalid environment defined
     if (!Object.values(APIEnvironment).includes(API_ENVIRONMENT as APIEnvironment)) { throw new Error("API_ENVIRONMENT is not a valid environment"); }
 
-    fastify.register(rateLimit, {
+    await fastify.register(rateLimit, {
         max: handleRateLimit(API_ENVIRONMENT),
         timeWindow: '1 minute'
     });
