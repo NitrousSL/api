@@ -6,6 +6,8 @@ import { ModuleCategory }                                from "@enum/eModuleCate
 
 import { getModules, Module }                            from "@module/module";
 
+import pkg                                               from "@package";
+
 import RequireAll                                        from "require-all";
 import path                                              from "path";
 
@@ -45,6 +47,9 @@ const doesQueryConform = (query: string, category: string): boolean => {
     * @description Registers OSINT endpoints
 */
 async function rOSINT(fastify: FastifyInstance) {
+
+    // api version
+    fastify.get("/version", async (req: FastifyRequest, res: FastifyReply) => { res.send({ version: pkg.version }); });
 
     // map out module classes
     const modules: Module[] = getModules();

@@ -1,6 +1,9 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import fastify, { FastifyInstance } from 'fastify';
+import pkg                          from "@package";
+
+import fastify, { FastifyInstance } from "fastify";
+import rateLimit                    from "@fastify/rate-limit";
 import compress                     from "@fastify/compress";
 import helmet                       from "@fastify/helmet";
 import cors                         from "@fastify/cors";
@@ -11,7 +14,7 @@ import cors                         from "@fastify/cors";
 //
 /////////////////////////////////////////////////////////////
 
-const PORT : number          = 3008;
+const PORT : number          = process.env.PORT ? parseInt(process.env.PORT) : 3008;
 const HOST : String          = `localhost`;
 const app  : FastifyInstance = fastify({ logger: false });
 
@@ -27,11 +30,17 @@ import rOSINT     from '@route/rOSINT';
 
 async function main(fastify: FastifyInstance) {
 
-    fastify.register(compress);
-    fastify.register(helmet);
-    fastify.register(cors);
+    // todo: env based ratelimiting handler
+    await fastify.register(rateLimit, {
+        max: 100,
+        timeWindow: '1 minute'
+    });
 
-    rOSINT(fastify);
+    await fastify.register(compress);
+    await fastify.register(helmet);
+    await fastify.register(cors);
+
+    await rOSINT(fastify);
 
     fastify.listen({port: PORT}, (err, address) => {
 
@@ -39,6 +48,6 @@ async function main(fastify: FastifyInstance) {
     });
 }
 
-main(app).then(r => { console.log(`[${new Date().toLocaleString()}] | Server started and listening at [${HOST}:${PORT}]`); });
+main(app).then(r => { console.log(`[${new Date().toLocaleString()}] [${pkg.version}/${}] | Server started and listening at [${HOST}:${PORT}]`); });
 
 // Path: src/index.ts
