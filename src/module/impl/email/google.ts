@@ -16,8 +16,8 @@ const META: ModuleMeta = {
     type        : ModuleType.Enrichment,
 }
 
-const ghunt = path.join(__dirname, "..", "..", "..", "..", "bin", "ghuntQuery.py");
-const creds = path.join(__dirname, 'creds.txt');
+const ghunt : string = path.join(__dirname, "bin", "ghuntQuery.py");
+const creds : string = path.join(__dirname, 'creds.txt');
 
 export class Google extends Module {
 
@@ -25,11 +25,10 @@ export class Google extends Module {
 
     public async query(query: string): Promise<any> {
 
-        let execQuery = `python3.10 ${ghunt} ${query} `;
+        let execQuery : string = `python3.10 ${ghunt} ${query} `;
 
-        if (!creds) {
-            execQuery += process.env.GHUNT_CREDS;
-        }
+        // only append creds if they are not found to prevent potential leaks
+        if (!creds) { execQuery += process.env.GHUNT_CREDS; }
 
         const result = await new Promise((resolve, reject) => {
             exec(execQuery, (err, stdout, stderr) => {
