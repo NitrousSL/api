@@ -16,7 +16,7 @@ const META: ModuleMeta = {
     type        : ModuleType.Enrichment,
 }
 
-const ghunt : string = path.join(__dirname, "../../../../", "bin", "ghuntQuery.py");
+const ghunt : string = path.join(__dirname, "../../../../../", "bin", "ghuntQuery.py");
 const creds : string = path.join(__dirname, 'creds.txt');
 
 export class Google extends Module {
