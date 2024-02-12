@@ -1,6 +1,10 @@
 # nitrous-oxi.de OSINT API
 fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaissance
 
+# Requirements
+
+- python 3.10
+
 # Usage
 
 ## Categories
@@ -33,7 +37,7 @@ All modules within a category can be queried via the following endpoints:
 ## Response Schema
 
 ```json
-{ "status" : 200, "data" : data }
+{ "status" : 200, "data" : {}   }
 { "status" : 404, "data" : null }
 { "status" : 500, "data" : null }
 ```
