@@ -8,7 +8,6 @@ import { Module }         from "@module/module";
 import { exec }           from "child_process";
 import path               from "path";
 
-
 const META: ModuleMeta = {
     name        : "google",
     description : "Searches Google profile info using Ghunt based on a given gmail address.",
@@ -18,6 +17,7 @@ const META: ModuleMeta = {
 }
 
 const ghunt = path.join(__dirname, "..", "..", "..", "..", "bin", "ghuntQuery.py");
+const creds = path.join(__dirname, 'creds.txt');
 
 export class Google extends Module {
 
@@ -25,8 +25,14 @@ export class Google extends Module {
 
     public async query(query: string): Promise<any> {
 
+        let execQuery = `python3.10 ${ghunt} ${query} `;
+
+        if (!creds) {
+            execQuery += process.env.GHUNT_CREDS;
+        }
+
         const result = await new Promise((resolve, reject) => {
-            exec(`python3.10 ${ghunt} ${process.env.GHUNT_CREDS} ${query}`, (err, stdout, stderr) => {
+            exec(execQuery, (err, stdout, stderr) => {
                 if (err) { reject(err); }
                 resolve(stdout);
             });

@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NitrousOSINT/api.git"
+    "url": "git+https://github.com/NitrousSL/api-osint.git"
   },
   "keywords": [
     "typescript",
