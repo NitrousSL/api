@@ -27,7 +27,9 @@ const app  : FastifyInstance   = fastify({ logger: false });
 /////////////////////////////////////////////////////////////
 
 import rOSINT     from '@route/rOSINT';
+import rAuth      from "@route/rAuth";
 import rAPI       from '@route/rAPI';
+
 
 /////////////////////////////////////////////////////////////
 
@@ -51,6 +53,7 @@ async function main(fastify: FastifyInstance) {
     if (!Object.values(APIEnvironment).includes(API_ENVIRONMENT as APIEnvironment)) { throw new Error("API_ENVIRONMENT is not a valid environment"); }
 
     await fastify.register(rateLimit, {
+
         max: handleRateLimit(API_ENVIRONMENT),
         timeWindow: '1 minute'
     });
@@ -58,6 +61,12 @@ async function main(fastify: FastifyInstance) {
     fastify.register(compress);
     fastify.register(helmet);
     fastify.register(cors);
+
+    // do not register auth routes in sandbox environment
+    if (API_ENVIRONMENT !== APIEnvironment.Sandbox) {
+
+        rAuth(fastify);
+    }
 
     rOSINT(fastify);
     rAPI(fastify);
