@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Nitrous API
+  version: 1.0.1
+  termsOfService: https://nitrous-oxi.de/terms/
+  description: |
+    The Nitrous API is a RESTful API that allows you to query data from various sources. The API is currently in beta and is subject to change.
+servers:
+  - url: https://api.nitrous-oxi.de/
+    description: Production
+  - url: https://staging.api.nitrous-oxi.de/
+    description: Staging
+  - url: https://sandbox.api.nitrous-oxi.de/
+    description: Sandbox
+tags:
+  - name: /
+  - name: /{category}
+  - name: /{category}/{module}
+  - name: /version
+paths:
+  /:
+    get:
+      tags:
+        - /
+      summary: Index all modules
+      requestBody:
+        content:
+          application/json:
+  /{category}:
+    get:
+      tags:
+        - /{category}
+      summary: Index all modules in a category
+      parameters:
+        - name: category
+          in: path
+          required: true
+          description: Category to index
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+  /{category}/{module}:
+      get:
+        tags:
+          - /{category}/{module}
+        summary: Make a request to a module
+        parameters:
+          - name: category
+            in: path
+            required: true
+            description: Category of the module
+            schema:
+              type: string
+          - name: module
+            in: path
+            required: true
+            description: Name of the module
+            schema:
+              type: string
+          - name: query
+            in: query
+            required: true
+            description: Query to make to the module
+            schema:
+              type: string
+        requestBody:
+          content:
+            application/json:
+  /version:
+    get:
+      tags:
+        - /version
+      summary: Get API environment & version
+      requestBody:
+        content:
+          application/json:
+components:
+    schemas:
+        Module:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the module
+              example: "cashapp"
+            route:
+              type: string
+              description: Route path of the module
+              example: "/username/cashapp"
+            description:
+              type: string
+              description: Description of the module
+              example: "Searches for CashApp profile info based on a given username."
+            type:
+              type: string
+              description: Type of data the module returns
+              example: "enrichment || existence"
+
+

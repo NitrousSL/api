@@ -16,6 +16,7 @@
             "@enum/*"      : ["./src/sdk/enum/*"],
             "@module/*"    : ["./src/module/*"],
             "@route/*"     : ["./src/route/*"],
+            "@model/*"     : ["./src/model/*"],
             "@package"     : ["./package.json"],
         },
         "declaration": true
