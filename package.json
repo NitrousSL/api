@@ -1,7 +1,7 @@
 {
   "name": "api",
-  "version": "1.0.1",
-  "description": "nitrous-oxi.de osint api using fastify & typescript",
+  "version": "1.1.0",
+  "description": "nitrous-oxi.de rest api using fastify & typescript",
   "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
@@ -9,15 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NitrousSL/api-osint.git"
+    "url": "git+https://github.com/NitrousSL/api.git"
   },
   "keywords": [
     "typescript",
     "fastify",
-    "osint",
     "api"
   ],
-  "author": "David & Marc",
+  "author": "David",
   "license": "ISC",
   "dependencies": {
     "@fastify/compress": "^6.5.0",
