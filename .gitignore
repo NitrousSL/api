@@ -1,4 +1,6 @@
 
+--force
+
 src/models/*.ts
 src/models/interaction/*.ts
 
