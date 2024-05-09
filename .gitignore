@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 --force
 
@@ -7,6 +8,8 @@ src/models/interaction/*.ts
 src/route/rAuth.ts
 
 dist
+=======
+>>>>>>> parent of 3861395 (update to prepare for auth routes)
 .idea
 
 # Logs
@@ -140,8 +143,3 @@ dist
 .yarn/install-state.gz
 .pnp.*
 creds.txt
-src/index.ts
-src/model/interaction/iUser.ts
-src/model/mUser.ts
-src/model/mUser.ts
-src/model/mUser.ts
