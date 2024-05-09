@@ -27,7 +27,6 @@ const app  : FastifyInstance   = fastify({ logger: false });
 /////////////////////////////////////////////////////////////
 
 import rOSINT     from '@route/rOSINT';
-import rAuth      from "@route/rAuth";
 import rAPI       from '@route/rAPI';
 
 
@@ -36,11 +35,11 @@ import rAPI       from '@route/rAPI';
 // requests per minute
 const handleRateLimit = (env: string) => {
     switch (env) {
-        case APIEnvironment.Development : return 999;
-        case APIEnvironment.Production  : return 60;
-        case APIEnvironment.Staging     : return 60;
-        case APIEnvironment.Sandbox     : return 100;
-        default                         : return 0;
+        case APIEnvironment.Development : return 999 ;
+        case APIEnvironment.Production  : return 60  ;
+        case APIEnvironment.Staging     : return 60  ;
+        case APIEnvironment.Sandbox     : return 100 ;
+        default                         : return 0   ;
     }
 }
 
@@ -62,14 +61,8 @@ async function main(fastify: FastifyInstance) {
     fastify.register(helmet);
     fastify.register(cors);
 
-    // do not register auth routes in sandbox environment
-    if (API_ENVIRONMENT !== APIEnvironment.Sandbox) {
-
-        rAuth(fastify);
-    }
-
-    rOSINT(fastify);
-    rAPI(fastify);
+    await rOSINT(fastify);
+    await rAPI(fastify);
 
     fastify.listen({port: PORT}, (err, address) => {
 

@@ -1,4 +1,4 @@
-# nitrous-oxi.de OSINT API
-fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaissance
+# nitrous-oxi.de API
+fastify/typescript [api](https://api.nitrous-oxi.de/) for all backend services throughout Nitrous
 
 

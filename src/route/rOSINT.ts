@@ -1,10 +1,12 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
-import IQueryStandardization                             from "@interface/iQueryStandardization";
+import {
+    IQueryStandardization,
+    ModuleCategory,
+    getModules,
+    Module
+}                                                        from "osint.ts";
 
-import { ModuleCategory }                                from "@enum/eModuleCategory";
-
-import { getModules, Module }                            from "@module/module";
 
 import RequireAll                                        from "require-all";
 import path                                              from "path";
@@ -16,7 +18,7 @@ type Request = FastifyRequest<{ Querystring: { query: string } }>;
     * @description An array of all query standardization classes
 */
 const standardization: IQueryStandardization[] = Object.values(RequireAll({
-    dirname : path.join(__dirname, "../module/query"),
+    dirname : `${process.cwd()}/osint/dist/module/query`,
     filter  : /^(?!-)(.+)\.js$/,
 }));
 
@@ -40,25 +42,33 @@ const doesQueryConform = (query: string, category: string): boolean => {
 }
 
 /*
+    * @constant modules
+    * @description An array of all modules gathered from a built copy of osint
+*/
+const modules: Module[] = getModules(`${process.cwd()}/osint/dist/module/impl`);
+
+/*
+    * @constant endpoints
+    * @description An array of all endpoints generated from the modules
+*/
+const endpoints = modules.map(m => {
+
+    return {
+
+        description : m.meta.description,
+        name        : m.meta.name,
+
+        route       : `/${m.meta.category.valueOf().toLowerCase()}/${m.meta.name}`,
+        type        : m.meta.type.valueOf(),
+    }
+});
+
+/*
     * @function rOSINT
     * @param { FastifyInstance } fastify
     * @description Registers OSINT endpoints
 */
 async function rOSINT(fastify: FastifyInstance) {
-
-    // map out module classes
-    const modules: Module[] = getModules();
-
-    // map out endpoints by module [category], {display name, desc, and route}
-    const endpoints = modules.map(m => {
-        return {
-            description : m.meta.description,
-            name        : m.meta.name,
-
-            route       : `/${m.meta.category.valueOf().toLowerCase()}/${m.meta.name}`,
-            type        : m.meta.type.valueOf(),
-        }
-    });
 
     // return an array of each category, inside each category is an array of endpoints, each endpoint has a name, desc, and route
     fastify.get("/", async (req: FastifyRequest, res: FastifyReply) => {
@@ -79,7 +89,7 @@ async function rOSINT(fastify: FastifyInstance) {
         // map out modules in a category
         const modules = Object.entries(
             RequireAll({
-              dirname : path.join(__dirname, `../module/impl/${cat.valueOf().toLowerCase()}`),
+              dirname : path.join(__dirname, `${process.cwd()}/osint/dist/module/impl/${cat.valueOf().toLowerCase()}`),
               filter  : /^(?!-)(.+)\.js$/,
           })
         );
