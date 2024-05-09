@@ -1,4 +1,0 @@
-[submodule "osint"]
-	path = osint
-	url = https://github.com/NitrousSL/osint.git
-

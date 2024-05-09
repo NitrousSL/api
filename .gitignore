@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
---force
-
-src/models/*.ts
-src/models/interaction/*.ts
-
-src/route/rAuth.ts
-
-dist
-=======
->>>>>>> parent of 3861395 (update to prepare for auth routes)
 .idea
 
 # Logs

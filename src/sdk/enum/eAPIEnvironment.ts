@@ -8,3 +8,5 @@ export enum APIEnvironment {
     Staging     = 'staging',
     Sandbox     = 'sandbox',
 }
+
+// Path: src/sdk/enum/eAPIEnvironment.ts

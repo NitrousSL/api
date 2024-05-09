@@ -12,19 +12,11 @@
         "strict": true,
         "esModuleInterop": true,
         "paths": {
-<<<<<<< HEAD
-            "@enum/*"            : ["./src/sdk/enum/*"],
-
-            "@route/*"           : ["./src/route/*"],
-            "@model/*"           : ["./src/model/*"],
-            "@package"           : ["./package.json"],
-=======
             "@interface/*" : ["./src/sdk/interface/*"],
             "@enum/*"      : ["./src/sdk/enum/*"],
             "@module/*"    : ["./src/module/*"],
             "@route/*"     : ["./src/route/*"],
             "@package"     : ["./package.json"],
->>>>>>> parent of 3861395 (update to prepare for auth routes)
         },
         "declaration": true
     },

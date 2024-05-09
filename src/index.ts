@@ -29,17 +29,16 @@ const app  : FastifyInstance   = fastify({ logger: false });
 import rOSINT     from '@route/rOSINT';
 import rAPI       from '@route/rAPI';
 
-
 /////////////////////////////////////////////////////////////
 
 // requests per minute
 const handleRateLimit = (env: string) => {
     switch (env) {
-        case APIEnvironment.Development : return 999 ;
-        case APIEnvironment.Production  : return 60  ;
-        case APIEnvironment.Staging     : return 60  ;
-        case APIEnvironment.Sandbox     : return 100 ;
-        default                         : return 0   ;
+        case APIEnvironment.Development : return 999;
+        case APIEnvironment.Production  : return 60;
+        case APIEnvironment.Staging     : return 60;
+        case APIEnvironment.Sandbox     : return 100;
+        default                         : return 0;
     }
 }
 
@@ -52,7 +51,6 @@ async function main(fastify: FastifyInstance) {
     if (!Object.values(APIEnvironment).includes(API_ENVIRONMENT as APIEnvironment)) { throw new Error("API_ENVIRONMENT is not a valid environment"); }
 
     await fastify.register(rateLimit, {
-
         max: handleRateLimit(API_ENVIRONMENT),
         timeWindow: '1 minute'
     });
@@ -61,8 +59,8 @@ async function main(fastify: FastifyInstance) {
     fastify.register(helmet);
     fastify.register(cors);
 
-    await rOSINT(fastify);
-    await rAPI(fastify);
+    rOSINT(fastify);
+    rAPI(fastify);
 
     fastify.listen({port: PORT}, (err, address) => {
 
