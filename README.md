@@ -1,13 +1,16 @@
 # nitrous-oxi.de OSINT API
-fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaissance
 
-# Requirements
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NitrousOSINT/api/blob/main/LICENSE)
 
-- python 3.10
+Fastify/TypeScript [OSINT API](https://api.nitrous-oxi.de/) for basic reconnaissance.
 
-# Usage
+## Requirements
 
-## Categories
+- Python 3.10
+
+## Usage
+
+### Categories
 
 - [`/username`](https://api.nitrous-oxi.de/username)
 - [`/domain`](https://api.nitrous-oxi.de/domain)
@@ -15,36 +18,37 @@ fastify/typescript [osint api](https://api.nitrous-oxi.de/) for basic reconnaiss
 - [`/phone`](https://api.nitrous-oxi.de/phone)
 - [`/ip`](https://api.nitrous-oxi.de/ip)
 
-## Module Indexing
+### Module Indexing
 
 All modules can be indexed via the following endpoints:
 
-`https://api.nitrous-oxi.de/`  
-`https://api.nitrous-oxi.de/<category>/`
+- `https://api.nitrous-oxi.de/`
+- `https://api.nitrous-oxi.de/<category>/`
 
-## Individual Module Queries
+### Individual Module Queries
 
 A single module can be queried via the following endpoint:
 
-`https://api.nitrous-oxi.de/<category>/<module>?query=`
+- `https://api.nitrous-oxi.de/<category>/<module>?query=`
 
-## Categorized Queries
+### Categorized Queries
 
 All modules within a category can be queried via the following endpoints:
 
-`https://api.nitrous-oxi.de/<category>?query=`
+- `https://api.nitrous-oxi.de/<category>?query=`
 
-## Response Schema
+### Response Schema
 
 ```json
-{ "status" : 200, "data" : {}   }
+{ "status" : 200, "data" : {} }
 { "status" : 404, "data" : null }
 { "status" : 500, "data" : null }
 ```
 
-# Development
+## Development
 
-# Getting Started Locally
+### Getting Started Locally
+
 ```bash
 $ git clone https://github.com/NitrousOSINT/api.git
 $ npm install
@@ -52,9 +56,9 @@ $ npm run build
 $ npm run start
 ```
 
-## ModuleCategory Enum
+### ModuleCategory Enum
 
-found in `src/sdk/enum/eModuleCategory.ts` aliased as `@enum/eModuleCategory`
+Found in `src/sdk/enum/eModuleCategory.ts` aliased as `@enum/eModuleCategory`.
 
 ```typescript
 export enum ModuleCategory {
@@ -68,9 +72,9 @@ export enum ModuleCategory {
 
 Each module must be assigned a category, which describes its required input.
 
-## ModuleType Enum
+### ModuleType Enum
 
-found in `src/sdk/enum/eModuleType.ts` aliased as `@enum/eModuleType`
+Found in `src/sdk/enum/eModuleType.ts` aliased as `@enum/eModuleType`.
 
 ```typescript
 export enum ModuleType {
@@ -79,11 +83,11 @@ export enum ModuleType {
 }
 ```
 
-Each module must be assigned a type, which is used to describe the date returned.
+Each module must be assigned a type, which is used to describe the data returned.
 
-## ModuleMeta Interface
+### ModuleMeta Interface
 
-found in `src/sdk/interface/iModuleMeta.ts` aliased as `@interface/iModuleMeta`
+Found in `src/sdk/interface/iModuleMeta.ts` aliased as `@interface/iModuleMeta`.
 
 ```typescript
 export interface ModuleMeta {
@@ -97,9 +101,9 @@ export interface ModuleMeta {
 
 Each module must be assigned metadata, which is used for indexing.
 
-## Module Superclass
+### Module Superclass
 
-found in `src/module/module.ts` aliased as `@module/module`
+Found in `src/module/module.ts` aliased as `@module/module`.
 
 ```typescript
 export class Module {
@@ -112,11 +116,11 @@ export class Module {
 }
 ```
 
-Every module has a set metadata, and must implement the `query` method, which returns a promise of the module's result.
+Every module has a set metadata and must implement the `query` method, which returns a promise of the module's result.
 
-## In Practice
+### In Practice
 
-found in `src/module/impl/username/cashapp.ts`
+Found in `src/module/impl/username/cashapp.ts`.
 
 ```typescript
 // define our module's metadata
@@ -141,7 +145,7 @@ export class CashApp extends Module {
         // determine if the query has returned a valid response
         const exists = response.data.includes('var profile =');
 
-        // parse the response, and return data which is then sent to the client
+        // parse the response and return data which is then sent to the client
         return {
             status : exists ? 200                                                                : 404,
             data   : exists ? JSON.parse(response.data.split('var profile = ')[1].split(';')[0]) : null,
@@ -153,9 +157,9 @@ export class CashApp extends Module {
 module.exports = new CashApp;
 ```
 
-## QueryStandardization Interface
+### QueryStandardization Interface
 
-found in `src/sdk/interface/iQueryStandardization.ts` aliased as `@interface/iQueryStandardization`
+Found in `src/sdk/interface/iQueryStandardization.ts` aliased as `@interface/iQueryStandardization`.
 
 ```typescript
 export default interface IQueryStandardization {
@@ -171,9 +175,9 @@ export default interface IQueryStandardization {
 
 Provides category-specific query standardization to catch some common mistakes.
 
-### Example
+#### Example
 
-found in `src/module/query/qDomain.ts`
+Found in `src/module/query/qDomain.ts`.
 
 ```typescript
 // create a new class implementing our interface
@@ -194,7 +198,6 @@ export default class QDomain implements IQueryStandardization {
 module.exports = new QDomain;
 ```
 
-The router will automatically standardize the query before passing it to the module, and will return a 400 if the query does not meet the standardization requirements.
-  
-See the `doesQueryConform()` method and its usages in `src/route/rOSINT.ts` for more information.
+The router will automatically standardize the query before passing it to the module and will return a 400 if the query does not meet the standardization requirements.
 
+See the `doesQueryConform()` method and its usages in `src/route/rOSINT.ts` for more information.
