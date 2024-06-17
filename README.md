@@ -201,3 +201,6 @@ module.exports = new QDomain;
 The router will automatically standardize the query before passing it to the module and will return a 400 if the query does not meet the standardization requirements.
 
 See the `doesQueryConform()` method and its usages in `src/route/rOSINT.ts` for more information.
+
+## Repository Stats
+![Alt](https://repobeats.axiom.co/api/embed/69310884abead108be619a086eaac3a225f09c88.svg "Repobeats analytics image")
