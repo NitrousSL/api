@@ -1,7 +1,7 @@
 # nitrous-oxi.de OSINT API
 ![GitHub License](https://img.shields.io/github/license/NitrousSL/api.nitrous-oxi.de)
 
-Fastify/TypeScript [OSINT API](https://api.nitrous-oxi.de/) for basic reconnaissance.
+Fastify [REST API](https://api.nitrous-oxi.de/) for basic reconnaissance.
 
 ## Requirements
 
