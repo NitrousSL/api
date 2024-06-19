@@ -202,4 +202,4 @@ The router will automatically standardize the query before passing it to the mod
 See the `doesQueryConform()` method and its usages in `src/route/rOSINT.ts` for more information.
 
 ## Repository Stats
-![Alt](https://repobeats.axiom.co/api/embed/69310884abead108be619a086eaac3a225f09c88.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/21f49eaf5837a4529931b55e5c32c9a9b02bd87f.svg "Repobeats analytics image")
