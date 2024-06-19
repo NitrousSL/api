@@ -1,6 +1,5 @@
 # nitrous-oxi.de OSINT API
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NitrousOSINT/api/blob/main/LICENSE)
+![GitHub License](https://img.shields.io/github/license/NitrousSL/api.nitrous-oxi.de)
 
 Fastify/TypeScript [OSINT API](https://api.nitrous-oxi.de/) for basic reconnaissance.
 
