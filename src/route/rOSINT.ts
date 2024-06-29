@@ -98,7 +98,7 @@ async function rOSINT(fastify: FastifyInstance) {
                 if (!doesQueryConform(query, cat)) { return res.send({ status: 400,  data: "Query does not meet standards." }); }
 
                 // perform query on module, return result
-                const data  = await m[1].query(query.replace(/^\s+|\s+$/g, ''));
+                const data  = await m[1].execute(query.replace(/^\s+|\s+$/g, ''));
 
                 res.send(data);
             });
@@ -123,7 +123,7 @@ async function rOSINT(fastify: FastifyInstance) {
 
                 return {
                     name : m[0],
-                    data : await m[1].query(query.replace(/^\s+|\s+$/g, ''))
+                    data : await m[1].execute(query.replace(/^\s+|\s+$/g, ''))
                 }
             }));
 
