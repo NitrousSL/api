@@ -14,14 +14,17 @@
         "paths": {
             "@interface/*" : ["./src/sdk/interface/*"],
             "@enum/*"      : ["./src/sdk/enum/*"],
+            
             "@module/*"    : ["./src/module/*"],
             "@route/*"     : ["./src/route/*"],
+
             "@package"     : ["./package.json"],
         },
         "declaration": true
     },
     "include": [
         "src",
+        "test"
     ],
     "exclude": [
         "node_modules",
