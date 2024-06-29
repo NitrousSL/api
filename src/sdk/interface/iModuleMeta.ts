@@ -8,6 +8,10 @@ import { ModuleType }     from "@enum/eModuleType";
 export interface ModuleMeta {
     name        : string;
     description : string;
+    
+    thumbnail   : string;
+
+    updatedAt   : string;
 
     category    : ModuleCategory;
     type        : ModuleType;
