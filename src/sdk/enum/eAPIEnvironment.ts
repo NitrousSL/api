@@ -5,7 +5,6 @@
 export enum APIEnvironment {
     Development = 'development',
     Production  = 'production',
-    Staging     = 'staging',
     Sandbox     = 'sandbox',
 }
 

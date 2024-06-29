@@ -36,7 +36,6 @@ const handleRateLimit = (env: string) => {
     switch (env) {
         case APIEnvironment.Development : return 999;
         case APIEnvironment.Production  : return 60;
-        case APIEnvironment.Staging     : return 60;
         case APIEnvironment.Sandbox     : return 100;
         default                         : return 0;
     }
