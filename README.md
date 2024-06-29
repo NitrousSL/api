@@ -1,11 +1,16 @@
-# nitrous-oxi.de OSINT API
+
+# api.nitrous-oxi.de
+
+Fastify [REST API](https://api.nitrous-oxi.de/) featured with an OSINT framework for basic reconnaissance.
+
+
 ![GitHub License](https://img.shields.io/github/license/NitrousSL/api.nitrous-oxi.de)
 
-Fastify [REST API](https://api.nitrous-oxi.de/) for basic reconnaissance.
 
-## Requirements
+## Demo
 
-- Python 3.10
+updated demo link filler
+
 
 ## Usage
 
@@ -44,16 +49,34 @@ All modules within a category can be queried via the following endpoints:
 { "status" : 500, "data" : null }
 ```
 
-## Development
 
-### Getting Started Locally
+## Contributing
+
+Contributions are always welcome, espcially in the form of new modules! For major changes, please open an issue first
+to discuss what you would like to change.
+
+See `contributing.md` for ways to get started.
+
+Please adhere to this project's `code of conduct`.
+
+
+## Requirements
+
+- Python 3.10
+- Node.js v20
+## Installation
+
+Clone the repository then install dependencies via npm
 
 ```bash
-$ git clone https://github.com/NitrousOSINT/api.git
-$ npm install
-$ npm run build
-$ npm run start
+npm install typescript -G
+git clone https://github.com/NitrousSL/api.nitrous-oxi.de.git
+cd api.nitrous-oxi.de
+npm install
+npm run start
 ```
+    
+## Development
 
 ### ModuleCategory Enum
 
@@ -200,6 +223,23 @@ module.exports = new QDomain;
 The router will automatically standardize the query before passing it to the module and will return a 400 if the query does not meet the standardization requirements.
 
 See the `doesQueryConform()` method and its usages in `src/route/rOSINT.ts` for more information.
+## Acknowledgements
+
+ - [GHunt](https://github.com/mxrch/GHunt)
+
+
+
+## Authors
+
+- [@HaruhimeHoldings](https://www.github.com/haruhimeholdings)
+- [@hxruhime](https://www.github.com/hxruhime)
+- [@kiryano](https://www.github.com/kiryano)
+
 
 ## Repository Stats
+
 ![Alt](https://repobeats.axiom.co/api/embed/21f49eaf5837a4529931b55e5c32c9a9b02bd87f.svg "Repobeats analytics image")
+## License
+
+[GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
+
